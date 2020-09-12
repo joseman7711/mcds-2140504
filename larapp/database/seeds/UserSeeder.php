@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user')->insert([
+        DB::table('users')->insert([
             'name'       => 'Joseman San', 
             'email'      => 'jmss@gmail.com',
             'phone'      => 3165555787,
@@ -29,10 +29,13 @@ class UserSeeder extends Seeder
         $usr->email      = 'homeros@gmail.com';
         $usr->phone      = 3177555787;
         $usr->birthdate  = '1980-09-11';
-        $usr->Gender     = 'Male';
+        $usr->gender     = 'Male';
         $usr->address    = 'Av Rojas 54';
         $usr->password   = bcrypt('customer');
         $usr->save();
 
+ //Fatory
+
+        factory(App\User::class, 100)->create();
     }
 }

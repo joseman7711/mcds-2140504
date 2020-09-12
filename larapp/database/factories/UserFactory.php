@@ -18,11 +18,18 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $gender = $faker->randomElement(['Male' , 'Female']);
+    $filePath = storage_path('images');
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'fullname'           => $faker->name($gender),
+        'email'              => $faker->unique()->safeEmail,
+        'phone'              => $faker->numberBetween($min = 310100000, $max = 3202000000),
+        'birthdate'          => $faker->dateTimeBetween( $starDate = '-60 years' , $endDate = '-21 years' ),
+        'gender'             => $gender,
+        'photo'              => '/storage/images/'.$faker->image('public/storage/images', 640, 480, null, false),
+        'address'            => $faker->address,
+        'email_verified_at'  => now(),
+        'password'           => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        'remember_token'     => Str::random(10),
     ];
 });
