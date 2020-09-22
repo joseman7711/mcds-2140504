@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('challenge', function () {
+    foreach (App\User::all()->take(10) as $user) {
+        $years = Carbon::createFromDate($user->birthdate)->diff()->format('%y years old %m %d');
+        $since = Carbon::parse($user->created_at);
+        $rs[] = $user->name." - ".$years." - created ".$since->diffForHumans();
+        }
+        dd($rs);
+    });
