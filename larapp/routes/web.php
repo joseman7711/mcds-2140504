@@ -23,5 +23,8 @@ Route::get('challenge', function () {
         $since = Carbon::parse($user->created_at);
         $rs[] = $user->name." - ".$years." - created ".$since->diffForHumans();
         }
-        dd($rs);
+        return view('challenge')->with('rs', App\User::all()->take(10));
     });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
