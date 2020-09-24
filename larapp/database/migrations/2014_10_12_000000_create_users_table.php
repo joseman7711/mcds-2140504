@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->bigInteger('phone');
             $table->date('birthdate');
-            $table->string('Gender');
+            $table->string('gender');
             $table->string('address');
             $table->string('image')->default("imgs/no-photo.png");
             $table->timestamp('email_verified_at')->nullable();

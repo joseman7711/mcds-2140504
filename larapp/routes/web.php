@@ -28,3 +28,10 @@ Route::get('challenge', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/examples', function () {
+    $users = App\User::all()->take(10);
+    $categories = App\Category::all()->take(0);
+    $games = App\Game::all();
+    return view('examples',['users'=>$users,'categories'=>$categories,'games'=>$games]);
+});

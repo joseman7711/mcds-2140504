@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             'email'      => 'jmss@gmail.com',
             'phone'      => 3165555787,
             'birthdate'  => '1970-08-21',
-            'Gender'     => 'Male',
+            'gender'     => 'Male',
             'address'    => 'Av Rojas 54',
             'password'   => bcrypt('admin'),
             'role'       => 'Admin',
