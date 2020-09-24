@@ -18,11 +18,11 @@
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>
-                                @switch($user->gender)
-                                    @case('male')
+                                @switch($user->Gender)
+                                    @case('Male')
                                         Masculino
                                     @break
-                                    @case('female')
+                                    @case('Female')
                                         Femenino
                                     @break
                                     @default
