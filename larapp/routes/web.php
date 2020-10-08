@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Carbon\Carbon;
+use \Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,21 +17,41 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*Route::get('helloworld', function () {
+    return "<h1>Hello World</h1>";
+});*/
+
+/*Route::get('users', function () {
+    dd(App\User::all());
+});*/
+
+/*Route::get('user/{id}', function ($id) {
+    dd(App\User::findOrFail($id));
+});*/
+
 Route::get('challenge', function () {
     foreach (App\User::all()->take(10) as $user) {
-        $years = Carbon::createFromDate($user->birthdate)->diff()->format('%y years old %m %d');
+        $years = Carbon::createFromDate($user->birthdate)->diff()->format('%y years old');
         $since = Carbon::parse($user->created_at);
-        $rs[] = $user->name." - ".$years." - created ".$since->diffForHumans();
-        }
-        return view('challenge')->with('rs', App\User::all()->take(10));
-    });
+    	$rs[]  = $user->fullname." - ".$years." - created ".$since->diffForHumans();
+    }
+    return view('challenge', ['rs' => $rs]);
+});
+
+/*Route::get('examples', function () {
+    return view('examples');
+});*/
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Resources
+Route::resources([
+    'users'         => 'UserController',
+    //'categories'  => 'CategoryController',
+    //'games'       => 'GameController',
+]);
 
-Route::get('/examples', function () {
-    $users = App\User::all()->take(10);
-    $categories = App\Category::all()->take(0);
-    $games = App\Game::all();
-    return view('examples',['users'=>$users,'categories'=>$categories,'games'=>$games]);
-});
+// Middleware
+Route::get('locale/{locale}', 'LocaleController@index');
+
+Route::get('/home', 'HomeController@index')->name('home');

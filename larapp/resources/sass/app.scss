@@ -7,12 +7,5 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-
-//Custom
-
-body {
-    background-color: $black;
-    .card-header {
-        background-color: $purple;
-    }
-}
+// Custom
+@import 'custom';
