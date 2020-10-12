@@ -24,7 +24,7 @@
 				<tbody>
 					@foreach ($users as $user)
 						<tr>
-							<td>{{ $user->fullname }}</td>
+							<td>{{ $user->name }}</td>
 							<td class="d-none d-sm-table-cell">{{ $user->email }}</td>
 							<td class="d-none d-sm-table-cell">{{ $user->phone }}</td>
 							<td><img src="{{ asset($user->photo) }}" width="36px"></td>

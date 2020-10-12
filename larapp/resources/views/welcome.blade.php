@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Joseman</title>
+        <title>Laravel</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -19,28 +19,35 @@
                 height: 100vh;
                 margin: 0;
             }
+
             .full-height {
                 height: 100vh;
             }
+
             .flex-center {
                 align-items: center;
                 display: flex;
                 justify-content: center;
             }
+
             .position-ref {
                 position: relative;
             }
+
             .top-right {
                 position: absolute;
                 right: 10px;
                 top: 18px;
             }
+
             .content {
                 text-align: center;
             }
+
             .title {
-                font-size: 200px;
+                font-size: 84px;
             }
+
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -50,6 +57,7 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -73,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Joseman
+                    Laravel
                 </div>
 
                 <div class="links">

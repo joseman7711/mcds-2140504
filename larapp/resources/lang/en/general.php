@@ -11,7 +11,7 @@ return [
     'link-forgot'	 => 'Forgot Your Password?',
     // Register Page
     'title-register'  => 'Register',
-    'label-fullname'  => 'Name',
+    'label-fullname'  => 'FullName',
     'label-phone'     => 'PhoneNumber',
     'label-birthdate' => 'BirthDate',
     'label-gender'    => 'Gender',

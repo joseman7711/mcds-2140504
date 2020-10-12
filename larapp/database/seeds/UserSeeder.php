@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'birthdate'  => '1970-08-21',
             'gender'     => 'Male',
             'address'    => 'Av Rojas 54',
-            'password'   => bcrypt('admin'),
+            'password'   => bcrypt('jmss'),
             'role'       => 'Admin',
             'created_at' => now(),
         ]);

@@ -33,7 +33,7 @@ Route::get('challenge', function () {
     foreach (App\User::all()->take(10) as $user) {
         $years = Carbon::createFromDate($user->birthdate)->diff()->format('%y years old');
         $since = Carbon::parse($user->created_at);
-    	$rs[]  = $user->fullname." - ".$years." - created ".$since->diffForHumans();
+    	$rs[]  = $user->name." - ".$years." - created ".$since->diffForHumans();
     }
     return view('challenge', ['rs' => $rs]);
 });
@@ -47,8 +47,8 @@ Auth::routes();
 // Resources
 Route::resources([
     'users'         => 'UserController',
-    //'categories'  => 'CategoryController',
-    //'games'       => 'GameController',
+    //'categories'    => 'CategoryController',
+    //'games'         => 'GameController',
 ]);
 
 // Middleware
