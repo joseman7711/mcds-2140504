@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-     /**
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-  
     protected $fillable = [
-        'name', 
+        'name',
         'image',
         'description',
         'user_id',
@@ -21,4 +21,14 @@ class Game extends Model
         'slider',
         'price'
     ];
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
 }

@@ -15,26 +15,25 @@ class User extends Authenticatable
      *
      * @var array
      */
-  
-         protected $fillable = [
-        'name', 
+    protected $fillable = [
+        'fullname', 
         'email',
         'phone',
         'birthdate',
-        'Gender',
+        'gender',
         'address',
         'photo',
         'password',
         'role',
         'active'
     ];
-  
+
+
     /**
      * The attributes that should be hidden for arrays.
-    *
-    *
-    * @var array
-    **/  
+     *
+     * @var array
+     */
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -48,10 +47,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function games(){
-
-            return $this->hasMany('App\Game');
-             
-
+    public function games() {
+        return $this->hasMany('App\Game');
     }
+
+    public function scopeNames($users, $q) {
+        if (trim($q)) {
+            $users->where('fullname','LIKE',"%$q%")
+                  ->orWhere('email','LIKE',"%$q%");
+        }
+    }
+
+
 }

@@ -73,7 +73,7 @@ class RegisterController extends Controller
         }
         
         return Validator::make($data, [
-            'name'  => ['required'],
+            'fullname'  => ['required'],
             'email'     => ['required', 'email', 'unique:users'],
             'phone'     => ['required', 'numeric'],
             'birthdate' => ['required', 'date'],
@@ -93,7 +93,7 @@ class RegisterController extends Controller
     {
         //dd($data);
         return User::create([
-            'fullname'     => $data['name'],
+            'fullname'     => $data['fullname'],
             'email'        => $data['email'],
             'phone'        => $data['phone'],
             'birthdate'    => $data['birthdate'],

@@ -33,7 +33,7 @@ Route::get('challenge', function () {
     foreach (App\User::all()->take(10) as $user) {
         $years = Carbon::createFromDate($user->birthdate)->diff()->format('%y years old');
         $since = Carbon::parse($user->created_at);
-    	$rs[]  = $user->name." - ".$years." - created ".$since->diffForHumans();
+    	$rs[]  = $user->fullname." - ".$years." - created ".$since->diffForHumans();
     }
     return view('challenge', ['rs' => $rs]);
 });
@@ -46,10 +46,21 @@ Auth::routes();
 
 // Resources
 Route::resources([
-    'users'         => 'UserController',
-    //'categories'    => 'CategoryController',
-    //'games'         => 'GameController',
+    'users'       => 'UserController',
+    'categories'  => 'CategoryController',
+    'games'       => 'GameController',
 ]);
+
+// Export PDF
+Route::get('generate/pdf/users', 'UserController@pdf');
+// Export Excel
+Route::get('generate/excel/users', 'UserController@excel');
+// Import Excel
+Route::post('import/excel/users', 'UserController@import');
+// Search Scope
+Route::post('users/search', 'UserController@search');
+
+
 
 // Middleware
 Route::get('locale/{locale}', 'LocaleController@index');

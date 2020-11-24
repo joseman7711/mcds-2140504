@@ -37,6 +37,71 @@
         @yield('content')
     </main>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2@9.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            /* - - -*/
+            @if (session('message'))
+                Swal.fire({
+                    title: 'Felicitaciones',
+                    text: '{{ session('message') }}',
+                    icon: 'success',
+                    confirmButtonColor: '#1e5f74',
+                    confirmButtonText: 'Aceptar'
+                });
+            @endif
+            /* - - -*/
+            $('.btn-delete').click(function(event) {
+                Swal.fire({
+                    title: 'Esta usted seguro ?',
+                    text: 'Desea eliminar este registro',
+                    icon: 'error',
+                    showCancelButton: true,
+                    cancelButtonColor: '#d0211c',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonColor: '#1e5f74',
+                    confirmButtonText: 'Aceptar',  
+                }).then((result) => {
+                    if(result.value) {
+                        $(this).parent().submit();
+                    }
+                });
+            });
+            /* - - -*/
+            $('#photo').change(function(event) {
+               let reader = new FileReader();
+               reader.onload = function(event) {
+                    $('#preview').attr('src', event.target.result);
+               }
+               reader.readAsDataURL(this.files[0]);
+            });
+            /* - - -*/
+            $('.btn-excel').click(function(event) {
+                $('#file').click();
+            });
+            $('#file').change(function(event) {
+                $(this).parent().submit();
+            });
+            /* - - -*/
+            $('body').on('keyup','#qsearch', function(event) {
+                event.preventDefault();
+                $q = $(this).val();
+                $t = $('input[name=_token]').val();
+                $m = $('#tmodel').val();
+                $('.loader').removeClass('d-none');
+                $('.table').hide();
+                $sto = setTimeout(function(){
+                    clearTimeout($sto);
+                    $.post($m+'/search', {q: $q, _token: $t}, function(data) {
+                        $('.loader').addClass('d-none');
+                        $('#content').html(data);
+                        $('.table').fadeIn('slow');
+                    });
+                }, 2000);
+            });
+            /* - - -*/
+        });
+    </script>
 </body>
 </html>
